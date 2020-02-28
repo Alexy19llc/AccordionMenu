@@ -1,0 +1,224 @@
+//  GLobal Namespace (Inspirus Design System)
+$g-nmsp: ".a19";
+
+// Primary Colors
+$clr-primary-lighter: #F5FCFF;
+$clr-primary-light: #9ADFFF;
+$clr-primary-vibrant: #49C5FC;
+$clr-primary-dark: #4695C2;
+$clr-white: #FFFFFF;
+
+// Secondary Colors
+$clr-secondary-lightest: #EDF0F5;
+$clr-secondary-lighter: #D2D1D1;
+$clr-secondary-light: #828282;
+$clr-secondary-dark: #4A4A4A;
+
+// Action and Alerts Colors
+$clr-action-green-vibrant: #99E178;
+$clr-action-green: #5CB02D;
+$clr-action-green-dark: #1C7900;
+$clr-alert-red-light: #f1c3c3;
+$clr-alert-red: #DB6969;
+$clr-action-orange-faded: #FFD89E;
+$clr-action-orange-vibrant: #FFB64C;
+$clr-action-orange: #E8A33F;
+$clr-action-orange-dark: #D88000;
+
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body {
+    font-family: Arial, "Helvetica Neue", sans-serif;
+    color: #606060;
+    background-color: #fafafa;
+    margin:0;
+}
+
+//Clean up the lists styles
+ul.accordion-bellow {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.accordion {
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      position:absolute;
+      height:100%; 
+      width: 100%;
+      -webkit-flex-direction: column;
+          -ms-flex-direction: column;
+              flex-direction: column;
+      -webkit-align-items: stretch;
+          -ms-flex-align: stretch;
+              align-items: stretch;
+    }
+
+.accordion-bellow,
+.accordion-bellowExpanded {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+   -webkit-flex: 0.0000001 0 auto; // 0.0000001 to correct flex grow bug https://code.google.com/p/chromium/issues/detail?id=460510
+          -ms-flex: 0.0000001 0 auto;
+              flex: 0.0000001 0 auto;
+
+      -webkit-flex-direction: column;
+          -ms-flex-direction: column;
+              flex-direction: column;
+      -webkit-align-items: stretch;
+           -ms-flex-align: stretch;
+              align-items: stretch;
+        -webkit-transition:  .2s 0s linear;
+             -o-transition:  .2s 0s linear;
+                transition:  .2s 0s linear;
+}
+
+.accordion-bellow {
+  -webkit-flex: 1 0 auto;
+    -ms-flex: 1 0 auto;
+        flex: 0 0 auto;
+        align-items: stretch;
+        display: flex;
+}
+
+.accordion-foldContent {
+  padding: 0 0.5em;
+}
+
+input[type='radio'].accordion-input,
+input[type='checkbox'].accordion-input {
+  display: none;
+}
+
+.accordion-fold label {
+  cursor: pointer;
+  flex: 0 0 auto;
+  width: 100%;
+  position: absolute;
+  display: flex;
+  padding: 0 .5em;
+  align-items: center;
+  justify-content: space-between;
+  -webkit-user-select: none;  // Chrome all / Safari all
+  -moz-user-select: none;     // Firefox all
+  -ms-user-select: none;      // IE 10+
+  user-select: none; 
+}
+.accordion-heading .icon-inline {
+    display: flex;
+}
+.icon-inline .svgicon {
+  max-width: 24px;
+  max-height: 24px;
+  padding-right: 16px;
+  fill: gray;
+}
+
+// Caret Right Icon
+svg.a19-caretRight.svgicon {
+width: 40px;
+height: 60px;
+transform: rotate(90deg);
+transition: 0.15s ease-in;
+transform-origin: 2px 12px;
+}
+input[type='radio'].accordion-input:checked + .accordion-bellow .accordion-heading .btnIcon svg.a19-caretRight.svgicon {
+  transform: rotate(-90deg);
+}
+
+// Plus Icon
+svg.a19-plus.svgicon {
+max-width: 48px;
+max-height: 48px;
+height: 14px;
+  .shape {
+    transition: fill 0;
+    transition-delay: 0;
+  }
+}
+.accordion-input:not(:checked) + .accordion-bellow svg.a19-plus.svgicon .shape-secondary {
+  transition: transform .2s ease-in-out, opacity .2s ease-in;
+  transform: rotate(0deg);
+  transform-origin: 50% 50%;
+  opacity: 1;
+  transition-delay: .2s;
+}
+.accordion-input:checked + .accordion-bellow .accordion-heading svg.a19-plus.svgicon .shape-secondary {
+  transition: transform .2s ease-in-out, opacity .2s ease-in;
+  transform: rotate(90deg);
+  transform-origin: 50% 50%;
+  // opacity: 0;
+  transition-delay: .2s;
+}
+
+.accordion-fold.accordion-heading {
+  color: #999;
+  display:block;
+  border-bottom:1px solid #dbdbdb;
+  height: 2.5em;
+  font-size: 1.1em;
+  line-height: 2.5em;
+  font-weight: normal;
+  cursor: pointer;
+  background-color: $clr-secondary-lightest;
+  -webkit-flex: 0 0 auto;
+      -ms-flex: 0 0 auto;
+          flex: 0 0 auto;
+}
+
+// Header Hover
+input.accordion-input:not(:checked) + .accordion-bellow .accordion-fold.accordion-heading:hover {
+    transition: .2s ease-in;
+    background-color: $clr-primary-vibrant;
+    color: white;
+    .svgicon {
+      .shape {
+        fill: white;
+      }
+  }
+}
+
+.accordion-foldCollapse {
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 auto;
+  opacity: 0;
+  height: 0;
+  transition: 0.25s ease-out;
+  overflow: hidden;
+}
+
+// Expand Trigger
+input[type='radio'].accordion-input:checked + .accordion-bellow,
+input[type='checkbox'].accordion-input:checked + .accordion-bellow {
+  flex: 1 0 auto;
+}
+
+input[type='radio'].accordion-input:checked + .accordion-bellow .accordion-foldCollapse,
+input[type='checkbox'].accordion-input:checked + .accordion-bellow .accordion-foldCollapse {
+  flex: 1 0 auto;
+  overflow:auto;
+  opacity: 1;
+  color: #606060;
+  transition: 0.25s ease-in;
+}
+
+input[type='radio'].accordion-input:checked + .accordion-bellow .accordion-heading,
+input[type='checkbox'].accordion-input:checked + .accordion-bellow .accordion-heading {
+  color: black;
+  background:transparent;
+  border: none;
+}
+
+// OVERRIDES
+.accordion input[type='checkbox'].accordion-input:not(:checked) + .card {
+  border-bottom: none;
+}
